@@ -1,32 +1,17 @@
 version: "3"
 
 services:
-
-  bt-server:
-    env_file:
-      - .env
-    container_name: bt-server
-    restart: on-failure:3
-    image: ${BT_IMAGE_NAME}
-    build:
-      context: ./bt
-      dockerfile: Dockerfile
-    volumes:
-      - ${WWW_ROOT_PATH}:/www/wwwroot:rw
-      - ${WWW_LOGS_PATH}:/www/wwwlogs:rw
-      - ${BACKUP_PATH}/database:/www/backup/database:rw
-      - ${BACKUP_PATH}/site:/www/backup/site:rw
-      - ${BACKUP_PATH}/path:/www/backup/path:rw
-      - ${CRON_PATH}:/www/server/cron:rw
-      - ${RECYCLE_PATH}:/www/Recycle_bin:rw
-      - ${DATA_PATH}:/www/server/data:rw
+  aapanel:
+    platform: linux/x86_64
+    build: 
+      context: ./bin/aapanel
+    container_name: "aapanel-webserver"
     ports:
-      - "${PORT_CUSTOM}"
-      - "${PORT_FTP}"
-      - "${PORT_8888}:8888"
-      - "${PORT_8080}:8080"
-      - "${PORT_888}:888"
-      - "${PORT_443}:443"
-      - "${PORT_80}:80"
-      - "${PORT_21}:21"
-      - "${PORT_20}:20"
+      - "${AAPANEL_PORT}:8888"
+      - "${WEBSERVER_HOST_PORT}:80"
+      - "${WEBSERVER_SECURE_HOST_PORT}:443"
+      - "${PHPMYADMIN_PORT}:888"
+    volumes: 
+      - ${WEBSITE_DATA}:/www/wwwroot
+      - ${MYSQL_DATA}:/www/server/data
+      - ${WEBSITE_LOG}:/www/wwwlogs
