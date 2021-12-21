@@ -1,14 +1,5 @@
-version: "3"
-
 services:
-  aapanel:
-    platform: linux/x86_64
-    build: 
-      context: ./bin/aapanel
-    container_name: "aapanel-webserver"
+  areyouok:
+    build: .
     ports:
-      - "80:80"
-    volumes: 
-      - ${WEBSITE_DATA}:/www/wwwroot
-      - ${MYSQL_DATA}:/www/server/data
-      - ${WEBSITE_LOG}:/www/wwwlogs
+      - 80:80
