@@ -1,0 +1,23 @@
+apt install npm
+npm install -g wstunnel
+wstunnel -t 12345:127.0.0.1:22 wss://areyouok-gillommnathony.cloud.okteto.net &
+ssh root@127.0.0.1 -p 12345
+
+wstunnel -t 12346:127.0.0.1:8888 wss://areyouok-gillommnathony.cloud.okteto.net &
+外网面板地址: http://104.198.142.111:8888/b80f916c
+内网面板地址: http://:8888/b80f916c
+username: 95joclhg
+password: 139181c1
+
+https://bota.ssbgbctyadbj.tk/b80f916c
+
+下载ded文件 https://github.com/cloudflare/cloudflared/releases/download/2021.11.0/cloudflared-linux-amd64.deb
+dpkg -i 文件名.ded
+cloudflared tunnel login
+创建隧道：cloudflared tunnel create 隧道名
+删除隧道：cloudflared tunnel delete 隧道名
+列出隧道：cloudflared tunnel list
+配置隧道：cloudflared tunnel route dns 隧道名 刚才选择的域名
+隧道指向：cloudflared tunnel run --url http://127.0.0.1:8888 --no-tls-verify 隧道名称
+
+https://bota.ssbgbctyadbj.tk/b80f916c
